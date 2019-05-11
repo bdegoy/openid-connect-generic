@@ -14,6 +14,9 @@ new users are created in WordPress database.
 
 Much of the documentation can be found on the Settings > OpenID Connect Generic dashboard page.
 
+## Changes with this fork
+This fork is intended to add OIDC session monitoring and management.
+
 ## Table of Contents
 
 - [Installation](#installation)
