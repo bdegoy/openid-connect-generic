@@ -253,7 +253,7 @@ class OpenID_Connect_Generic {
     var interval = null;
     var pollperiod = 60000;
     var tagappendto = '#content';
-    var tagtop = '92px';
+    var tagtop = '120px';
     var tagleft = '16px';
     var responseDelay = 'Unk';
 
