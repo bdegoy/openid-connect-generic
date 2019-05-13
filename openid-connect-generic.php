@@ -2,11 +2,11 @@
 /*
 Plugin Name: OpenID Connect Generic
 Plugin URI: https://github.com/daggerhart/openid-connect-generic
-Description:  Connect to an OpenID Connect generic client using Authorization Code Flow
-Version: 3.5.0
-Author: daggerhart
-Author URI: http://www.daggerhart.com
-License: GPLv2 Copyright (c) 2015 daggerhart
+Description:  Connect to an OpenID Connect generic client using Authorization Code Flow - Forked de daggerhard.
+Version: 3.5.0-dnc1
+Author: bdegoy
+Author URI: https://degoy.com
+License: GPLv2 Copyright (c) 2019 bdegoy
 */
 
 /*
@@ -166,6 +166,329 @@ class OpenID_Connect_Generic {
 			update_option( 'openid-connect-generic-plugin-version', self::VERSION );
 		}
 	}
+    
+    
+    /**
+    * OAuthSD project https://oa.dnc.global
+    * OAuthSD OIDC plugin for WordPress
+    * Author : bdegoy DnC https://degoy.com
+    *
+    * Insert monitoring code in footer
+    * dnc1
+    */
+    function insert_monitoring() {
+     
+        // Enqueue some jQuery UIs
+        wp_enqueue_script('jquery-ui-dialog'); // from WP core
+        // get registered script object for jquery-ui
+        global $wp_scripts;
+        $ui = $wp_scripts->query('jquery-ui-core');
+        // load the Smoothness theme from Google CDN  
+        $protocol = is_ssl() ? 'https' : 'http';
+        $url = "$protocol://ajax.googleapis.com/ajax/libs/jqueryui/{$ui->ver}/themes/smoothness/jquery-ui.min.css";
+        wp_enqueue_style('jquery-ui-smoothness', $url, false, null);
+           
+        // OIDC Client Monitoring
+        $thisuri = $_SERVER['REQUEST_URI'];
+        $absolutepath_this_plugin = plugin_dir_path( __FILE__ );
+        $url_this_plugin = plugins_url('', dirname(__FILE__) ) . "/openid-connect-generic";
+        $state = md5(wp_get_session_token());
+        
+        // Server URLs
+        $settings = $this->settings;
+        $url_endpoint_login = $settings->endpoint_login;
+        $url_endpoint_token = $settings->endpoint_token;
+        $url_endpoint_userinfo = $settings->endpoint_userinfo;
+        $url_endpoint_logout = $settings->endpoint_end_session;
+        $parts = parse_url($url_endpoint_login);
+        $url_server = $parts['scheme'] . '://' . $parts['host'];
+        
+        // OIDC user
+        $clientID = $settings->client_id;
+        // $userID = ??? 
+        
+        // WP user
+        $user = get_user_by('id', get_current_user_id());
+        $login = $user->user_login;
+        $nom_auteur =$user->display_name;
+        
+        // for info popup
+        $infos =
+        '<br/>' . __('oidcclient:serveur_url','openid-connect-generic') . ' : <a href="' . $url_server . '">' . $url_server . '</a>' .
+        '<br/>' . __('oidcclient:client_id','openid-connect-generic') . ' : ' . $clientID . 
+        '<br/>' . __('oidcclient:login_wp','openid-connect-generic') . ' : ' . $login .
+        //'<br/>' . __('oidcclient:login_oidc_court','openid-connect-generic') . ' : ' .  $userID . 
+        '<br/>' . __('oidcclient:nom_auteur','openid-connect-generic') . ' : ' .  $nom_auteur; 
+        
+        // labels and messages
+        $msg_session_connected_no = __('oidcclient:session_connected_no','openid-connect-generic');
+        $msg_session_connected_yes = __('oidcclient:session_connected_yes','openid-connect-generic');
+        $msg_session_connected_error = __('oidcclient:session_connected_error','openid-connect-generic');
+        $msg_session_open = __('oidcclient:session_open','openid-connect-generic');
+        $msg_session_extend = __('oidcclient:session_extend','openid-connect-generic');
+        $msg_session_close = __('oidcclient:session_close','openid-connect-generic');
+        $msg_session_expires = __('oidcclient:session_expires','openid-connect-generic');
+        $lbl_yes = __('oidcclient:item_yes','openid-connect-generic');
+        $lbl_no = __('oidcclient:item_no','openid-connect-generic');
+        $lbl_t_session_restant = __('oidcclient:t_session_restant','openid-connect-generic');
+        $lbl_delai_reponse = __('oidcclient:delai_reponse','openid-connect-generic');
+        $lbl_infos_titre = __('oidcclient:lbl_infos_titre','openid-connect-generic');
+        
+        // link to OIDC login                                                                                         
+        $link_login = $this->client_wrapper->get_authentication_url();
+        
+        // link to logout page
+        $url_logout = esc_url($url_this_plugin . "/oidc_logout.php?url=" . $_SERVER['REQUEST_URI']);
+    
+        echo <<<JSCODE
+            
+<script type="text/javascript">
+    
+(function($) {
+
+    var login = "$login";
+    var timeleft = 0;
+    var connected = 0;
+    var connectionMsg = '';
+    var interval = null;
+    var pollperiod = 60000;
+    var tagappendto = '#content';
+    var tagtop = '92px';
+    var tagleft = '16px';
+    var responseDelay = 'Unk';
+
+    $(document).on('ready',function(){
+
+        // Add OIDC labels
+        if($('#oidc').length === 0){
+            $('<div id="oidc"><span id="oidctag">&nbsp;OIDC&nbsp;</span><span id="oidcinfo">&nbsp;?&nbsp;</span></div>')
+            .appendTo(tagappendto);
+            //
+            $('#oidc')
+            .css('position','absolute')
+            .css('top',tagtop)
+            .css('left',tagleft);
+            //
+            $('#oidctag')
+            .css('color','white')
+            .css('padding','3px')
+            .css('z-index','10000')
+            .on('click', function(){
+                switch (connected) {
+                    case 0 :
+                        connectionMsg = "$msg_session_connected_no";
+                        SessionOpenDialog(connectionMsg);
+                        break;
+                    case 1 :
+                        connectionMsg = "$msg_session_connected_yes";
+                        SessionCloseDialog(connectionMsg);
+                        break;
+                    default :
+                    case -1 :
+                        connectionMsg = "$msg_session_connected_error";
+                        break;
+                }; 
+            });
+            //
+            $('#oidcinfo') 
+            .css('color','white')
+            .css('padding','3px')
+            .css('z-index','10001')
+            .css('background-color','#09f')
+            .on('click', function(){
+                $('<div></div>').appendTo('body')
+                .html('<div><h6>$infos<br/>$lbl_t_session_restant : ' + timeleft + ' s<br/>$lbl_delai_reponse : ' + responseDelay + ' ms</h6></div>')
+                .dialog({
+                    modal: true, title: "$lbl_infos_titre", zIndex: 10000, autoOpen: true,
+                    width: 'auto', resizable: false,
+                    close: function (event, ui) {
+                        $(this).remove();
+                        interval = setInterval(pollOidc,pollperiod);
+                        }
+                    });
+                } 
+            );             
+        }
+
+        // If user is logged locally, verify the OIDC session is valid.  
+        if ( login !== "" ) {
+            pollOidc();
+            interval = setInterval(pollOidc,pollperiod);
+
+        } else {
+            connected = 0; 
+            // Show not OIDC connected. 
+            $('#oidctag').css('background-color', 'orange');
+            $('#oidctag').text(' OIDC ');
+        }
+
+        function SessionCloseDialog(message) {    //[dnc28d]
+            clearInterval(interval);
+            $('<div></div>').appendTo('body')
+            .html('<div><h6>'+message+'?</h6></div>')
+            .dialog({
+                modal: true, title: "$msg_session_close", zIndex: 10000, autoOpen: true,
+                width: 'auto', resizable: false,
+                buttons: [
+                    {
+                        text: "$lbl_yes",
+                        click: function () {
+                            // Close the OIDC session.
+                            window.location.replace("$url_logout");
+                            $(this).dialog("close");
+                        }
+                    },{
+                        text: "$lbl_no",
+                        click: function () {                                                               
+                            $(this).dialog("close");
+                            interval = setInterval(pollOidc,pollperiod);
+                        }
+                    }
+                ],
+                close: function (event, ui) {
+                    $(this).remove();
+                    interval = setInterval(pollOidc,pollperiod);
+                }
+            });
+        };
+
+        function SessionOpenDialog(message) {    //[dnc28d]
+            clearInterval(interval);
+            $('<div></div>').appendTo('body')
+            .html('<div><h6>'+message+'?</h6></div>')
+            .dialog({
+                modal: true, title: "$msg_session_open", zIndex: 10000, autoOpen: true,
+                width: 'auto', resizable: false,
+                buttons: [
+                    {
+                        text: "$lbl_yes",
+                        click: function () {
+                            // Se connecter
+                            window.location.replace("$link_login");
+                            $(this).dialog("close");
+                        }
+                    },{
+                        text: "$lbl_no",
+                        click: function () {                                                                 
+                            $(this).dialog("close");
+                            interval = setInterval(pollOidc,pollperiod);
+                        }
+                    }
+                ],
+                close: function (event, ui) {
+                    $(this).remove();
+                    interval = setInterval(pollOidc,pollperiod);
+                }
+            });
+        };
+
+        function ExtendDialog(message) {    //[dnc28d]
+            clearInterval(interval);
+            $('<div></div>').appendTo('body')
+            .html('<div><h6>'+message+'?</h6></div>')
+            .dialog({
+                modal: true, title: "$msg_session_extend", zIndex: 10000, autoOpen: true,
+                width: 'auto', resizable: false,
+                buttons: [
+                    {
+                        text: "$lbl_yes",
+                        click: function () {
+                            // Extend session
+                            $.ajax({
+                                type : "get",
+                                url : "$url_endpoint_login",
+                                data : { 'response_type' : 'code',
+                                    'client_id' : "$clientID",
+                                    'user_id' : login,
+                                    'state' :  "$state",
+                                    'scope' : 'openid sli',
+                                } 
+                            });
+                            $(this).dialog("close");
+                            interval = setInterval(pollOidc,pollperiod);
+                        }
+                    },{
+                        text: "$lbl_no",
+                        click: function () {                                                                 
+                            $(this).dialog("close");
+                            interval = setInterval(pollOidc,pollperiod);
+                        },
+                    }
+                ],
+                close: function (event, ui) {
+                    $(this).remove();
+                    interval = setInterval(pollOidc,pollperiod);
+                },
+            });
+        };
+
+        // Test OIDC connection.
+        function pollOidc(){
+            connected = -1;
+            var d = new Date();
+            var timeStart = d.getTime();
+            var timeStop = 0;
+            $.ajax({
+                type : "get",
+                url : "$url_endpoint_login",
+                data : { 'response_type' : 'code',
+                    'client_id' : "$clientID",
+                    'user_id' : login,
+                    'state' :  "$state",
+                    'scope' : 'openid',
+                    'prompt' : 'none',
+                },
+                statusCode : {
+                    401 : function(){
+                        connected = 0;
+                        var d = new Date();
+                        timeStop = d.getTime();
+                        // Not (or no longer) connected on OIDC, disconnect locally
+                        window.location.replace("$url_logout" +"&logout=local");
+                    },
+                    200 : function ( data, textStatus, jqXHR){
+                        connected = 1;
+                        var d = new Date();
+                        timeStop = d.getTime();
+                        // Show OIDC connected 
+                        $('#oidctag').css('background-color', '#8f8');
+                        $('#oidctag').text(' OIDC ');
+                        timeleft = data['timeleft'];
+                        if ( timeleft < 600 ) {  //[dnc28d]
+                            // Approaching OIDC session end.
+                            clearInterval(interval); 
+                            ExtendDialog("$msg_session_expires");
+                            interval = setInterval(pollOidc,pollperiod);
+                        }
+                    },
+                },
+                error : function(obj,textStatus,errorThrown){
+                    connected = -1;
+                    // Show error (OIDC state is unknown)
+                    $('#oidctag').css('background-color', 'red');
+                    $('#oidctag').text(textStatus + ' ' + errorThrown);
+                },
+                complete : function ( data, textStatus, jqXHR){
+                    if ( timeStop && timeStart ) {
+                        responseDelay = timeStop - timeStart;       
+                    } else {
+                        responseDelay = 'Unk';
+                    }
+                },
+            });    
+        } 
+
+    });
+})( jQuery );
+
+</script>
+
+JSCODE
+;
+    
+} //function
+
+
 
 	/**
 	 * Simple autoloader
@@ -195,6 +518,7 @@ class OpenID_Connect_Generic {
 			require_once $filepath;
 		}
 	}
+    
 
 	/**
 	 * Instantiate the plugin and hook into WP
@@ -247,6 +571,11 @@ class OpenID_Connect_Generic {
 		add_filter( 'the_content_feed', array( $plugin, 'enforce_privacy_feeds' ), 999 );
 		add_filter( 'the_excerpt_rss',  array( $plugin, 'enforce_privacy_feeds' ), 999 );
 		add_filter( 'comment_text_rss', array( $plugin, 'enforce_privacy_feeds' ), 999 );
+        
+        //dnc1 OIDC Monitoring
+        wp_enqueue_script("jquery"); 
+        add_action('wp_footer', array( $plugin, 'insert_monitoring'), 5);
+              
 	}
 }
 

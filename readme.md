@@ -1,4 +1,4 @@
-# OpenID Connect Generic Client
+# OpenID Connect Generic Client (forked)
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@ new users are created in WordPress database.
 Much of the documentation can be found on the Settings > OpenID Connect Generic dashboard page.
 
 ## Changes with this fork
-This fork is intended to test OIDC session monitoring and management against a generic OIDC Server. will we succeed without any modification of the server?
+This fork is intended to test OIDC session monitoring and management against a generic OIDC Server. Will we succeed without any modification of the server?
 The main addition resides in Javascript code polling server to know the status of the OIDC session. 
 
 ## Table of Contents

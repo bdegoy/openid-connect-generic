@@ -1,0 +1,476 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-05-13 13:21+0100\n"
+"PO-Revision-Date: 2019-05-13 14:01+0100\n"
+"Last-Translator: B.Degoy <bertrand@degoy.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: C:\\Users\\Bertrand\\AppData\\Roaming\\NuSphere\\PhpED"
+"\\projects\\wp.dnc.global\\wp-content\\\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: plugins\\openid-connect-generic\n"
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:140
+msgid "Session expired. Please login again."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:411
+msgid "Invalid user"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:520
+msgid "No appropriate username found"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:575
+msgid "User claim incomplete"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:667
+msgid "Bad user claim result"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:718
+msgid "Can not authorize."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client-wrapper.php:738
+msgid "Failed user creation."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:83
+msgid "Missing state."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:132
+msgid "Request for authentication token failed."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:162
+msgid "Refresh token failed."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:176
+msgid "Missing token body."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:228
+msgid "Request for userinfo failed."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:313
+msgid "No identity token"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:320
+msgid "Missing identity token"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:347
+msgid "Bad ID token claim"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:352
+msgid "No subject identity"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:371
+msgid "Bad user claim"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:391
+msgid "Invalid user claim"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:396
+msgid "Error from the IDP"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:405
+msgid "Incorrect user claim"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-client.php:412
+msgid "Unauthorized access"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-login-form.php:116
+msgid "ERROR"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-login-form.php:129
+msgid "Login with OpenID Connect"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-option-logger.php:219
+msgid "Type"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-option-logger.php:223
+msgid "Date"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-option-logger.php:227
+msgid "User"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-option-logger.php:231
+msgid "URI "
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:42
+msgid "Login Type"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:43
+msgid "Select how the client (login form) should provide login options."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:46
+msgid "OpenID Connect button on login form"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:47
+msgid "Auto Login - SSO"
+msgstr "Auto Login - SSO"
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:52
+msgid "Client ID"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:53
+msgid ""
+"The ID this client will be recognized as when connecting the to Identity "
+"provider server."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:59
+msgid "Client Secret Key"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:60
+msgid ""
+"Arbitrary secret key the server expects from this client. Can be anything, "
+"but should be very unique."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:65
+msgid "OpenID Scope"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:66
+msgid "Space separated list of scopes this client should access."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:72
+msgid "Login Endpoint URL"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:73
+msgid "Identify provider authorization endpoint."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:79
+msgid "Userinfo Endpoint URL"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:80
+msgid "Identify provider User information endpoint."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:86
+msgid "Token Validation Endpoint URL"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:87
+msgid "Identify provider token endpoint."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:93
+msgid "End Session Endpoint URL"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:94
+msgid "Identify provider logout endpoint."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:100
+msgid "Identity Key"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:101
+msgid ""
+"Where in the user claim array to find the user's identification data. "
+"Possible standard values: preferred_username, name, or sub. If you're having "
+"trouble, use \"sub\"."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:107
+msgid "Disable SSL Verify"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:108
+msgid ""
+"Do not require SSL verification during authorization. The OAuth extension "
+"uses curl to make the request. By default CURL will generally verify the SSL "
+"certificate to see if its valid an issued by an accepted CA. This setting "
+"disabled that verification.<br><strong>Not recommended for production sites."
+"</strong>"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:113
+msgid "HTTP Request Timeout"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:114
+msgid "Set the timeout for requests made to the IDP. Default value is 5."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:120
+msgid "Enforce Privacy"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:121
+msgid "Require users be logged in to see the site."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:126
+msgid "Alternate Redirect URI"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:127
+msgid ""
+"Provide an alternative redirect route. Useful if your server is causing "
+"issues with the default admin-ajax method. You must flush rewrite rules "
+"after changing this setting. This can be done by saving the Permalinks "
+"settings page."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:132
+msgid "Nickname Key"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:133
+msgid ""
+"Where in the user claim array to find the user's nickname. Possible standard "
+"values: preferred_username, name, or sub."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:139
+msgid "Email Formatting"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:140
+msgid ""
+"String from which the user's email address is built. Specify \"{email}\" as "
+"long as the user claim contains an email claim."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:146
+msgid "Display Name Formatting"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:147
+msgid "String from which the user's display name is built."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:153
+msgid "Identify with User Name"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:154
+msgid ""
+"If checked, the user's identity will be determined by the user name instead "
+"of the email address."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:159
+msgid "State time limit"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:160
+msgid "State valid time in seconds. Defaults to 180"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:165
+msgid "Link Existing Users"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:166
+msgid ""
+"If a WordPress account already exists with the same identity as a newly-"
+"authenticated user over OpenID Connect, login as that user instead of "
+"generating an error."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:171
+msgid "Redirect Back to Origin Page"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:172
+msgid ""
+"After a successful OpenID Connect authentication, this will redirect the "
+"user back to the page on which they clicked the OpenID Connect login button. "
+"This will cause the login process to proceed in a traditional WordPress "
+"fashion. For example, users logging in through the default wp-login.php page "
+"would end up on the WordPress Dashboard and users logging in through the "
+"WooCommerce \"My Account\" page would end up on their account page."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:177
+msgid "Redirect to the login screen session is expired"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:178
+msgid ""
+"When enabled, this will automatically redirect the user back to the "
+"WordPress login page if their access token has expired."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:183
+msgid "Enable Logging"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:184
+msgid "Very simple log messages for debugging purposes."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:189
+msgid "Log Limit"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:190
+msgid ""
+"Number of items to keep in the log. These logs are stored as an option in "
+"the database, so space is limited."
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:232
+msgid "OpenID Connect - Generic Client"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:233
+msgid "OpenID Connect Client"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:249
+msgid "Client Settings"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:255
+msgid "WordPress User Settings"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:261
+msgid "Authorization Settings"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:267
+msgid "Log Settings"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:354
+msgid "Notes"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:357
+msgid "Redirect URI"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:361
+msgid "Login Button Shortcode"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:366
+msgid "Logs"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:435
+msgid "Example"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:443
+msgid "Enter your OpenID Connect identity provider settings"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:447
+msgid "Modify the interaction between OpenID Connect and WordPress users"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:451
+msgid "Control the authorization mechanics of the site"
+msgstr ""
+
+#: plugins\openid-connect-generic/includes/openid-connect-generic-settings-page.php:455
+msgid "Log information about login attempts through OpenID Connect Generic"
+msgstr ""
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:217
+msgid "oidcclient:serveur_url"
+msgstr "URL serveur OIDC"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:218
+msgid "oidcclient:client_id"
+msgstr "Client ID"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:219
+msgid "oidcclient:login_wp"
+msgstr "Login WP"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:221
+msgid "oidcclient:nom_auteur"
+msgstr "Nom WP"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:224
+msgid "oidcclient:session_connected_no"
+msgstr "Not connected with OIDC"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:225
+msgid "oidcclient:session_connected_yes"
+msgstr "Connected with OIDC"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:226
+msgid "oidcclient:session_connected_error"
+msgstr "Connection error"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:227
+msgid "oidcclient:session_open"
+msgstr "Open session"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:228
+msgid "oidcclient:session_extend"
+msgstr "Extend session"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:229
+msgid "oidcclient:session_close"
+msgstr "Close session"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:230
+msgid "oidcclient:session_expires"
+msgstr "Session expires"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:231
+msgid "oidcclient:item_yes"
+msgstr "yes"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:232
+msgid "oidcclient:item_no"
+msgstr "no"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:233
+msgid "oidcclient:t_session_restant"
+msgstr "session remaining time"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:234
+msgid "oidcclient:delai_reponse"
+msgstr "Response delay"
+
+#: plugins\openid-connect-generic/openid-connect-generic.php:235
+msgid "oidcclient:lbl_infos_titre"
+msgstr "Informations on OIDC"

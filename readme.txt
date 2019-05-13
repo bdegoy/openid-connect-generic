@@ -1,4 +1,4 @@
-=== OpenID Connect Generic Client ===
+=== OpenID Connect Generic Client (forked) ===
 Contributors: daggerhart
 Donate link: http://www.daggerhart.com/
 Tags: security, login, oauth2, openidconnect, apps, authentication, autologin, sso 
@@ -16,6 +16,11 @@ This plugin allows to authenticate users against OpenID Connect OAuth2 API with 
 Once installed, it can be configured to automatically authenticate users (SSO), or provide a "Login with OpenID Connect"
 button on the login form. After consent has been obtained, an existing user is automatically logged into WordPress, while 
 new users are created in WordPress database.
+
+Changes with this fork
+This fork is intended to test OIDC session monitoring and management against a generic OIDC Server. Will we succeed without any modification of the server?
+The main addition resides in Javascript code polling server to know the status of the OIDC session. 
+
 
 Much of the documentation can be found on the Settings > OpenID Connect Generic dashboard page.
 
