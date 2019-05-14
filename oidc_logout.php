@@ -8,7 +8,7 @@ We must not disclose the token ID by issuing the disconnect request from a JS sc
 The JS script must call this script to generate a server side disconnect request.
 
 Author : bdegoy DnC https://degoy.com
-License: GPLv2
+License: GPLv2 Copyright (c) 2019 B.Degoy DnC https://degoy.com
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
