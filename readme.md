@@ -15,7 +15,8 @@ new users are created in WordPress database.
 Much of the documentation can be found on the Settings > OpenID Connect Generic dashboard page.
 
 ## Purpose of this fork
-This fork is intended to test OIDC session monitoring and management against a generic OIDC Server. Will we succeed without any modification of the server?
+This fork is intended to test OIDC session monitoring and management against a generic OIDC Server: https://oa.dnc.global. 
+Will we succeed without any modification of the server?
 The main addition resides in Javascript code polling server to know the status of the OIDC session. 
 See a demonstration there : https://wp.dnc.global/
 
