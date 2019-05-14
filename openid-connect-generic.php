@@ -2,11 +2,11 @@
 /*
 Plugin Name: OpenID Connect Generic
 Plugin URI: https://github.com/daggerhart/openid-connect-generic
-Description:  Connect to an OpenID Connect generic client using Authorization Code Flow - Forked de daggerhard.
-Version: 3.5.0-dnc1
-Author: bdegoy
-Author URI: https://degoy.com
-License: GPLv2 Copyright (c) 2019 bdegoy
+Description:  Connect to an OpenID Connect generic client using Authorization Code Flow
+Version: 3.5.0
+Author: daggerhart
+Author URI: http://www.daggerhart.com
+License: GPLv2 Copyright (c) 2015 daggerhart 
 */
 
 /*
@@ -171,10 +171,10 @@ class OpenID_Connect_Generic {
     /**
     * OAuthSD project https://oa.dnc.global
     * OAuthSD OIDC plugin for WordPress
-    * Author : bdegoy DnC https://degoy.com
-    *
     * Insert monitoring code in footer
     * dnc1
+    * Author : bdegoy DnC https://degoy.com
+    * copyright (c) 2019 bdegoy DnC
     */
     function insert_monitoring() {
      
