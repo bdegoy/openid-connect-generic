@@ -383,43 +383,45 @@ class OpenID_Connect_Generic {
         };
 
         function ExtendDialog(message) {    //[dnc28d]
-            clearInterval(interval);
-            $('<div></div>').appendTo('body')
-            .html('<div><h6>'+message+'?</h6></div>')
-            .dialog({
-                modal: true, title: "$msg_session_extend", zIndex: 10000, autoOpen: true,
-                width: 'auto', resizable: false,
-                buttons: [
-                    {
-                        text: "$lbl_yes",
-                        click: function () {
-                            // Extend session
-                            $.ajax({
-                                type : "get",
-                                url : "$url_endpoint_login",
-                                data : { 'response_type' : 'code',
-                                    'client_id' : "$clientID",
-                                    'user_id' : login,
-                                    'state' :  "$state",
-                                    'scope' : 'openid sli',
-                                } 
-                            });
-                            $(this).dialog("close");
-                            interval = setInterval(pollOidc,pollperiod);
+            if ( !$("#extenddialog").size() ) {  //[dnc28f]
+                clearInterval(interval);
+                $('<div id="extendeddialog"></div>').appendTo('body')
+                .html('<div><h6>'+message+'?</h6></div>')
+                .dialog({
+                    modal: true, title: "$msg_session_extend", zIndex: 10000, autoOpen: true,
+                    width: 'auto', resizable: false,
+                    buttons: [
+                        {
+                            text: "$lbl_yes",
+                            click: function () {
+                                // Extend session
+                                $.ajax({
+                                    type : "get",
+                                    url : "$url_endpoint_login",
+                                    data : { 'response_type' : 'code',
+                                        'client_id' : "$clientID",
+                                        'user_id' : login,
+                                        'state' :  "$state",
+                                        'scope' : 'openid sli',
+                                    } 
+                                });
+                                $(this).dialog("close");
+                                interval = setInterval(pollOidc,pollperiod);
+                            }
+                        },{
+                            text: "$lbl_no",
+                            click: function () {                                                                 
+                                $(this).dialog("close");
+                                interval = setInterval(pollOidc,pollperiod);
+                            },
                         }
-                    },{
-                        text: "$lbl_no",
-                        click: function () {                                                                 
-                            $(this).dialog("close");
-                            interval = setInterval(pollOidc,pollperiod);
-                        },
-                    }
-                ],
-                close: function (event, ui) {
-                    $(this).remove();
-                    interval = setInterval(pollOidc,pollperiod);
-                },
-            });
+                    ],
+                    close: function (event, ui) {
+                        $(this).remove();
+                        interval = setInterval(pollOidc,pollperiod);
+                    },
+                });
+            }
         };
 
         // Test OIDC connection.
